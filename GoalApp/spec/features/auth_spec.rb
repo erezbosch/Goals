@@ -11,10 +11,8 @@ feature "the signup process" do
   feature "signing up a user" do
 
     it "shows username on the homepage after signup" do
-      visit new_user_url
-      fill_in 'username', with: "test"
-      fill_in 'password', with: "password123"
-      click_on "Create user"
+      sign_up_as_test
+
       expect(page).to have_content "test"
     end
   end
@@ -23,6 +21,10 @@ end
 feature "logging in" do
 
   it "shows username on the homepage after login" do
+    sign_up_as_test
+
+    click_on "Sign out"
+
     visit new_session_url
     fill_in 'username', with: "test"
     fill_in 'password', with: "password123"
@@ -40,11 +42,8 @@ feature "logging out" do
       end
 
   it "doesn't show username on the homepage after logout" do
-    visit new_session_url
-    fill_in 'username', with: "test"
-    fill_in 'password', with: "password123"
-    click_on "Sign in"
-          
+    sign_up_as_test
+
     click_on "Sign out"
     expect(page).to_not have_content "test"
   end

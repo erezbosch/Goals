@@ -1,0 +1,8 @@
+<h1>Goals</h1>
+<% @user.goals.each do |goal| %>
+  <p>Goal: <%= link_to goal.body, goal_url(goal) %></p>
+<% end %>
+
+<% if current_user == @user %>
+  <%= link_to "Create a new goal", new_goal_url %>
+<% end %>
