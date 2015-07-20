@@ -1,5 +1,12 @@
 <h1><%= @goal.body %></h1>
+<p> Comments </p>
+<% @goal.comments.each do |comment| %>
+  <p><%= comment.body %></p>
+<% end %>
+<p> Add comment </p>
+<%= render "layouts/comment_form", type: "Goal" %>
+<br>
 <% if current_user == @goal.user %>
   <%= link_to "Update goal", edit_goal_url(@goal) %>
-  <%= button_to "Delete goal", goal_url(@goal), method: :delete %>
+  <%= link_to "Delete goal", goal_url(@goal), method: :delete %>
 <% end %>

@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include Commentable
   before_validation :ensure_session_token
 
   validates :username, :password_digest, :session_token, presence: true

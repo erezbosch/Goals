@@ -7,7 +7,7 @@
          value=<%= form_authenticity_token %>>
 
   <label for="goal_body">Body</label>
-  <input type="text" name="goal[body]" id="goal_body" value=<%= @goal.value %>>
+  <input type="text" name="goal[body]" id="goal_body" value="<%= @goal.body %>">
 
   <label for="goal_type_true">Public</label>
   <input type="radio" name="goal[goal_type]" id="goal_type_true" value="true"

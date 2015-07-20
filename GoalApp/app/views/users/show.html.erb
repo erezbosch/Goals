@@ -2,6 +2,12 @@
 <% @user.goals.each do |goal| %>
   <p>Goal: <%= link_to goal.body, goal_url(goal) %></p>
 <% end %>
+<p> Comments </p>
+<% @user.comments.each do |comment| %>
+  <p><%= comment.body %></p>
+<% end %>
+<p> Add comment </p>
+<%= render "layouts/comment_form", type: "User" %>
 
 <% if current_user == @user %>
   <%= link_to "Create a new goal", new_goal_url %>
