@@ -1,4 +1,5 @@
 class GoalsController < ApplicationController
+  before_action :redirect_unless_logged_in
   before_action :redirect_unless_current_user, only: [:edit, :destroy]
   before_action :redirect_if_private_goal, only: :show
 
@@ -47,7 +48,7 @@ class GoalsController < ApplicationController
   end
 
   def redirect_unless_current_user
-    redirect_to root_url unless current_user == Goal.find(params[:id]).user
+    redirect_to root_url unless Goal.find(params[:id]).user == current_user
   end
 
   def redirect_if_private_goal

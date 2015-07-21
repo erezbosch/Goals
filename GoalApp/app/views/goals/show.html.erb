@@ -6,6 +6,10 @@
 <p> Add comment </p>
 <%= render "layouts/comment_form", type: "Goal" %>
 <br>
+<%= button_to "Cheer", cheers_url, method: :post, params: { goal_id: @goal.id } %>
+<% @goal.cheers.each do |cheer| %>
+  <p><%= cheer.user.username %> cheered this goal</p>
+<% end %>
 <% if current_user == @goal.user %>
   <%= link_to "Update goal", edit_goal_url(@goal) %>
   <%= link_to "Delete goal", goal_url(@goal), method: :delete %>

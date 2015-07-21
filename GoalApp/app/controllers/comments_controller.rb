@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_action :redirect_unless_logged_in
+  
   def create
     comment = Comment.new(comment_params)
     comment.save

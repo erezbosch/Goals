@@ -5,5 +5,6 @@ class Goal < ActiveRecord::Base
   validates_inclusion_of :goal_type, in: [true, false], message: "can't be blank"
 
   belongs_to :user
+  has_many :cheers
 
 end
