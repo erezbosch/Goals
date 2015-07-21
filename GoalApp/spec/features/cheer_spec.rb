@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 describe 'Cheers' do
-  let(:test) { create(:user) }
-  let(:test_two) { create(:user_two) }
-  let(:goals) { create_list(:goal, 11,  user: test) }
+  let!(:test) { create(:user) }
+  let!(:test_two) { create(:user_two) }
+  let!(:test_three) { create(:user) }
+  let!(:goals) { create_list(:goal, 11,  user: test) }
 
   feature "Create" do
     it "can create a cheer for another user's goal" do
@@ -39,6 +40,24 @@ describe 'Cheers' do
       end
 
       expect(page).to have_content("You are out of cheers")
+    end
+  end
+
+  feature "Leaderboard" do
+    it "accurately counts cheers" do
+      sign_in(test_two)
+      goals[0..1].each do |goal|
+        visit goal_url(goal)
+        click_on "Cheer"
+      end
+      click_on("Sign out")
+      sign_in(test_three)
+      visit goal_url(goals.first)
+      click_on "Cheer"
+
+      visit leaderboard_url
+      expect(page).to have_content("2")
+      expect(page).to have_content("1")
     end
   end
 end

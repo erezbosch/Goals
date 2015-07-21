@@ -1,0 +1,4 @@
+<h1>Leaderboard</h1>
+<% @goals.each do |goal| %>
+  <p><%= goal.body %> has <%= goal.num_cheers %> cheers!</p>
+<% end %>

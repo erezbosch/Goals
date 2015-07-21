@@ -41,6 +41,10 @@ class GoalsController < ApplicationController
     redirect_to user_url(@goal.user_id)
   end
 
+  def leaderboard
+    @goals = Goal.leaderboard
+  end
+
   private
 
   def goal_params

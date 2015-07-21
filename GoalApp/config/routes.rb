@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   resources :goals, except: :index
   resources :comments, only: :create
   resources :cheers, only: :create
+
+  get "leaderboard", to: "goals#leaderboard"
 end
